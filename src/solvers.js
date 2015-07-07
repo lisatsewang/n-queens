@@ -47,13 +47,6 @@ window.findNRooksSolution = function(n) {
     }
   });
 
-
-  // console.log(board.attributes);
-
-
-
-  //convert Board obj to matrix format for export
-
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
   return solution;
 };
@@ -62,7 +55,31 @@ window.findNRooksSolution = function(n) {
 
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
 window.countNRooksSolutions = function(n) {
-  var solutionCount = undefined; //fixme
+  var solutionCount = 0;
+  var chessCount = 0;
+  var rowCount = 0;
+  var board = new Board({n: n});
+
+  var placePiece = function(currBoard, rowIndex, colIndex) {
+    //increment row index
+    currBoard.togglePiece(rowIndex, colIndex);
+    chessCount++;
+
+    //check for conflicts
+    //if conflict toggle back and decrease chesscount
+
+    //if chesscount === n && no conflicts, solutionCount++
+    //chessCount = 0
+
+    //increment solution count when found
+
+
+  };
+  for(var i = 0; i < n; i++) {
+    for(var j = 0; j < n; j++) {
+      placePiece(board, j, i); 
+    }
+  }
 
   var isDuplicate = function(matrix1, matrix2) {
     for (var i = 0; i < matrix1.length; i++) {
@@ -73,7 +90,6 @@ window.countNRooksSolutions = function(n) {
       }
     }
     return true;
-    //[[0, 1, 0],[],[]]
   };
 
   console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
